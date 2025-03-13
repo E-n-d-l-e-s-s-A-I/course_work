@@ -18,5 +18,5 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 RUN chmod +x ./run.sh
 
 ENTRYPOINT ["uv", "run", "./run.sh"]
-CMD ["payment_service"]
+CMD ["crud_api"]
     
