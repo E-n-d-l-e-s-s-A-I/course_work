@@ -1,14 +1,13 @@
 import uuid as uuid_pkg
-from sqlalchemy import ForeignKey
+
+from api.city.models import City
 from database import Base
+from sqlalchemy import ForeignKey
 from sqlalchemy.orm import (
     Mapped,
     mapped_column,
     relationship,
 )
-
-
-from api.city.models import City
 
 
 class Path(Base):

@@ -1,10 +1,9 @@
 # from api.router import router as api_router
 from typing import Annotated
-from fastapi import FastAPI
-from sqlalchemy.ext.asyncio import AsyncSession
-from fastapi import Depends
-from database import get_db_session
 
+from database import get_db_session
+from fastapi import Depends, FastAPI
+from sqlalchemy.ext.asyncio import AsyncSession
 
 app = FastAPI(
     title="CrudApi",
@@ -19,6 +18,7 @@ async def create_model(
 ) -> str:
     """Тестовый эндпоинт чтобы проверить подключение к бд."""
     import random
+
     from api.city.models import City
 
     city_names = ["Москва", "Владивосток"]

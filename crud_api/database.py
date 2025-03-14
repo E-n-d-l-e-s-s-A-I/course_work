@@ -7,15 +7,12 @@ from sqlalchemy.ext.asyncio import (
 )
 from sqlalchemy.orm import DeclarativeBase
 
-
 engine = create_async_engine(
     settings.database.metadata_uri,
     future=True,
 )
 
-async_session_factory = async_sessionmaker(
-    engine, autoflush=False, expire_on_commit=False
-)
+async_session_factory = async_sessionmaker(engine, autoflush=False, expire_on_commit=False)
 
 
 async def get_db_session() -> AsyncGenerator:

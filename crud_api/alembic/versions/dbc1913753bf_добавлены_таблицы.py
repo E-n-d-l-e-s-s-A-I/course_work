@@ -6,17 +6,16 @@ Create Date: 2025-03-13 23:14:33.867556
 
 """
 
-from typing import Sequence, Union
+from collections.abc import Sequence
 
-from alembic import op
 import sqlalchemy as sa
-
+from alembic import op
 
 # revision identifiers, used by Alembic.
 revision: str = "dbc1913753bf"
-down_revision: Union[str, None] = None
-branch_labels: Union[str, Sequence[str], None] = None
-depends_on: Union[str, Sequence[str], None] = None
+down_revision: str | None = None
+branch_labels: str | Sequence[str] | None = None
+depends_on: str | Sequence[str] | None = None
 
 
 def upgrade() -> None:
@@ -95,9 +94,7 @@ def upgrade() -> None:
         sa.PrimaryKeyConstraint("id"),
         comment="Таблица с путями",
     )
-    op.create_index(
-        op.f("ix_path_city_from_id"), "path", ["city_from_id"], unique=False
-    )
+    op.create_index(op.f("ix_path_city_from_id"), "path", ["city_from_id"], unique=False)
     op.create_index(op.f("ix_path_city_to_id"), "path", ["city_to_id"], unique=False)
     op.create_index(op.f("ix_path_id"), "path", ["id"], unique=False)
     # ### end Alembic commands ###
