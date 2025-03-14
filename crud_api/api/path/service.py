@@ -3,6 +3,7 @@ import uuid as uuid_pkg
 import ops as ops
 from api.path import schemas
 from api.path.models import Path
+from fastapi import HTTPException
 from service import Service
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -66,7 +67,7 @@ class PathService(Service):
         Returns:
             schemas.PathWithId: Путь.
         """
-        # TODO добавить проверку что такого пути и обратного нет
+        await self.check_path_not_exist(path, session)
 
         path_sqlalchemy_object = await ops.create(
             Path,
@@ -95,7 +96,8 @@ class PathService(Service):
         Returns:
             schemas.PathWithId: Путь.
         """
-        # TODO добавить проверку что такого пути и обратного нет
+        await self.check_path_not_exist(path, session)
+
         path_sqlalchemy_object = await ops.update(
             Path,
             path_id,
@@ -125,6 +127,29 @@ class PathService(Service):
 
         path = await ops.delete(Path, path_id, session)
         return schemas.PathWithId.model_validate(path)
+
+    async def check_path_not_exist(self, path: schemas.PathBase, session: AsyncSession):
+        """
+        Проверяет, что путь не существует в базе.
+
+        Args:
+            path (schemas.PathBase): Путь.
+            session (AsyncSession): Асинхронная Sqlalchemy сессия.
+
+        Raises:
+            HTTPException: 409, если путь существует.
+        """
+        statement = select(Path)
+
+        # Находим множество существующий путей, сортируем пути чтобы учесть,
+        # что путь (a, b) = (b, a) и бд может быть только один из них
+        paths: list[Path] = await ops.execute_to_get_many(statement, session)
+        city_pairs = set(tuple(sorted([path.city_from_id, path.city_to_id])) for path in paths)
+
+        new_pair = tuple(sorted([path.city_from_id, path.city_to_id]))
+
+        if new_pair in city_pairs:
+            raise HTTPException(409, "Путь уже существует")
 
 
 path_service = PathService()
