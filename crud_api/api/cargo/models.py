@@ -13,6 +13,7 @@ class Cargo(Base):
     __tablename__ = "cargo"
     __table_args__ = {
         "comment": "Таблица с грузами",
+        "info": {"readable_name": "Груз"},
     }
 
     id: Mapped[uuid_pkg.UUID | None] = mapped_column(

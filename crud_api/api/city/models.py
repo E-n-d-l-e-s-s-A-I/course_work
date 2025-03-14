@@ -13,6 +13,7 @@ class City(Base):
     __tablename__ = "city"
     __table_args__ = {
         "comment": "Таблица с городами",
+        "info": {"readable_name": "Город"},
     }
 
     id: Mapped[uuid_pkg.UUID | None] = mapped_column(

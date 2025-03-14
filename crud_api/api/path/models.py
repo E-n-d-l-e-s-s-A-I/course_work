@@ -16,6 +16,7 @@ class Path(Base):
     __tablename__ = "path"
     __table_args__ = {
         "comment": "Таблица с путями",
+        "info": {"readable_name": "Путь"},
     }
 
     id: Mapped[uuid_pkg.UUID | None] = mapped_column(
