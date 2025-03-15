@@ -34,6 +34,9 @@ class DBIntegrityException(HTTPException):
         headers: dict[str, str] | None = None,
     ) -> None:
         super().__init__(409, detail, headers)
+        if "duplicate key value violates unique constraint" in detail:
+            raise DuplicateNameException(detail, headers)
+
         if "violates foreign key constraint" not in detail:
             return
         if "delete on table" in detail:
@@ -102,3 +105,28 @@ class EntityNotFoundException(HTTPException):
             entity_name=Base.metadata.tables[sqlalchemy_model.__tablename__].info["readable_name"]
         )
         super().__init__(404, detail)
+
+
+class DuplicateNameException(HTTPException):
+    """
+    Класс для исключения, возникающее при попытке
+    удалить объект с существующими связанными объектами.
+    """
+
+    EXCEPTION_MESSAGE_TEMPLATE = (
+        "Сущность '{entity_name}' с таким названием уже существует"
+    )
+
+    def __init__(
+        self,
+        detail: Any = None,
+        headers: dict[str, str] | None = None,
+    ) -> None:
+        import logging
+        logging.warn(detail)
+        entity_name = extract_entity_name(detail, r'([a-zA-Z_]*)_name_key')
+
+        detail = DuplicateNameException.EXCEPTION_MESSAGE_TEMPLATE.format(
+            entity_name=entity_name,
+        )
+        super().__init__(409, detail, headers)

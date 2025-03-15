@@ -25,6 +25,7 @@ class Truck(Base):
     )
     name: Mapped[str] = mapped_column(
         comment="Название грузовика",
+        unique=True,
     )
     weight: Mapped[float] = mapped_column(
         comment="Вес грузовика",

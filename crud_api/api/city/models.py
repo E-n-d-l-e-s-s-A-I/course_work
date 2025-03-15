@@ -25,4 +25,5 @@ class City(Base):
     )
     name: Mapped[str] = mapped_column(
         comment="Название города",
+        unique=True,
     )

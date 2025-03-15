@@ -24,7 +24,6 @@ quote-style = "double"  # Like Black and PEP
 indent-style = "space"
 docstring-code-format = true
 docstring-code-line-length = 100
-exclude = ["smartapi/alembic/*", "admin/*",]
 
 [tool.ruff.lint.per-file-ignores]
 "*/__init__.py" = ["F401"]  # Ignore module imported but unused for __init__.py
@@ -43,4 +42,3 @@ select = [
     "T20", # flake8-print (Check debug print)
     "I",   # isort (Sorting import)
 ]
-exclude = ["smartapi/alembic/*", "admin/*",]
