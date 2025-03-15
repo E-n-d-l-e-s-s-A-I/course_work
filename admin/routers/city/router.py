@@ -3,10 +3,10 @@ from routers.city.schemas import CityBase
 from routers.core_api import api
 
 
-def city_tab_page(model_tab):
+def city_tab_page(city_tab):
     """Логика вкладки городов."""
 
-    with model_tab:
+    with city_tab:
         cities = api.city.get_cities()
         city_name_to_id = {city.name: city.id for city in cities}
         cities_inner_ids = (city.name for city in cities)

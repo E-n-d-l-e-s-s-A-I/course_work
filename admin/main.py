@@ -1,5 +1,6 @@
 import streamlit as st
 from routers.city.router import city_tab_page
+from routers.truck.router import truck_tab_page
 
 
 def main_page():
@@ -7,12 +8,13 @@ def main_page():
         [
             "Города",
             "Пути",
-            "Грузы",
             "Грузовики",
+            "Грузы",
             "Поиск пути",
         ]
     )
     city_tab_page(city_tab)
+    truck_tab_page(truck_tab)
 
 
 main_page()
