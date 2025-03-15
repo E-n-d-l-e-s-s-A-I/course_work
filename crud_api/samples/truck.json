@@ -1,0 +1,18 @@
+[
+    {
+        "id": "c2f05e3d-6d84-4f34-9e24-3eb6f8d75d10",
+        "name": "КамАЗ-5490",
+        "weight": 8000.0,
+        "speed": 80.0,
+        "height": 4.0,
+        "max_cargo_weight": 10000.0
+    },
+    {
+        "id": "d9a3f6b4-7c68-42f3-a93e-dfb5d2f916c1",
+        "name": "MAN TGX",
+        "weight": 9000.0,
+        "speed": 85.0,
+        "height": 4.2,
+        "max_cargo_weight": 12000.0
+    }
+]

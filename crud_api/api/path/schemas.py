@@ -15,7 +15,7 @@ class PathBase(BaseModel):
     @field_validator("max_weight", mode="after")
     @classmethod
     def weight_validator(cls, value: float) -> float:
-        return range_validator(value, 0, 10000)
+        return range_validator(value, 0, 20000)
 
     @field_validator("max_height", mode="after")
     @classmethod

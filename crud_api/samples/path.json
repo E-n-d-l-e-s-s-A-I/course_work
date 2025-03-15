@@ -1,0 +1,26 @@
+[
+    {
+        "id": "3d8a1b9d-8742-4f6e-a3a7-ef7e7e6212e4",
+        "city_from_id": "f1c7781d-8197-4d13-a0db-e26eba5c187f",
+        "city_to_id": "cc90b876-e2e3-4e48-8fe0-367cbc143374",
+        "distance": 250.0,
+        "max_weight": 15000.0,
+        "max_height": 4.5
+    },
+    {
+        "id": "bbf342df-7b1f-4f6f-8c17-9c3b9b78a78c",
+        "city_from_id": "cc90b876-e2e3-4e48-8fe0-367cbc143374",
+        "city_to_id": "a7b9c2d5-42b5-4db0-bfd5-1f0f2e7e1f34",
+        "distance": 500.0,
+        "max_weight": 20000.0,
+        "max_height": 4.2
+    },
+    {
+        "id": "61d9a5c2-9874-40de-b5c8-6b6f48d97f92",
+        "city_from_id": "f1c7781d-8197-4d13-a0db-e26eba5c187f",
+        "city_to_id": "a7b9c2d5-42b5-4db0-bfd5-1f0f2e7e1f34",
+        "distance": 750.0,
+        "max_weight": 18000.0,
+        "max_height": 4.0
+    }
+]
