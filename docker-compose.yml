@@ -1,6 +1,5 @@
 services:
   db:
-    hostname: smartapi-db
     image: postgres:12
     env_file: ${ENV_FILE:-.env}
     ports:
@@ -23,3 +22,16 @@ services:
       db:
         condition: service_healthy
     command: crud_api
+
+  admin:
+    build:
+      context: .
+    ports:
+      - "8001:8501"
+    volumes:
+      - ./admin:/src/admin
+    depends_on:
+      - db
+      - crud_api
+
+    command: admin

@@ -1,17 +1,10 @@
-from pydantic import BaseModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-class DatabaseSettings(BaseModel):
-    """Конфиг для базы данных."""
-
-    metadata_uri: str
-
-
 class Settings(BaseSettings):
-    """Конфиг crud_api."""
+    """Конфиг admin."""
 
-    database: DatabaseSettings
+    BACKEND_URL: str
 
     model_config = SettingsConfigDict(extra="ignore")
 
