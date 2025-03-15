@@ -9,13 +9,13 @@ class TruckApi:
         self.api_endpoint = api_endpoint + "/truck/"
 
     def get_trucks(self) -> list[Truck]:
-        cities_raw = re.get(self.api_endpoint).json()
-        cities: list[Truck] = [Truck(**city) for city in cities_raw]
-        return cities
+        trucks_raw = re.get(self.api_endpoint).json()
+        trucks: list[Truck] = [Truck(**truck) for truck in trucks_raw]
+        return trucks
 
     def get_truck(self, id: str) -> Truck:
-        city_raw = re.get(self.api_endpoint + id).json()
-        return Truck(**city_raw)
+        truck_raw = re.get(self.api_endpoint + id).json()
+        return Truck(**truck_raw)
 
     def create_truck(self, truck_data: TruckBase) -> bool:
         response = re.post(self.api_endpoint, json=truck_data.model_dump())
