@@ -35,6 +35,8 @@ def path_tab_page(path_tab):
         )
 
         st.divider()
+        if not path_widget:
+            st.subheader("Создать путь")
 
         if path_widget:
             path_id = path_name_to_id[path_widget[0]]

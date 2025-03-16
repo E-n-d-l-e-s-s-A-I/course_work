@@ -17,6 +17,9 @@ def city_tab_page(city_tab):
         )
 
         st.divider()
+        if not city_widget:
+            st.subheader("Создать город")
+
 
         if city_widget:
             city_id = city_name_to_id[city_widget[0]]

@@ -20,6 +20,8 @@ def truck_tab_page(truck_tab):
         )
 
         st.divider()
+        if not truck_widget:
+            st.subheader("Создать грузовик")
 
         if truck_widget:
             truck_id = truck_name_to_id[truck_widget[0]]

@@ -20,6 +20,9 @@ def cargo_tab_page(cargo_tab):
         )
 
         st.divider()
+        if not cargo_widget:
+            st.subheader("Создать груз")
+
 
         if cargo_widget:
             cargo_id = cargo_name_to_id[cargo_widget[0]]
