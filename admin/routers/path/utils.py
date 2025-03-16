@@ -1,4 +1,4 @@
-from routers.core_api import api
+from routers.core_api import crud_api
 from routers.path.schemas import Path
 
 
@@ -12,7 +12,8 @@ def get_city_name(city_id: str) -> str:
     Returns:
         str: Название города.
     """
-    return api.city.get_city(id=city_id).name
+    return crud_api.city.get_city(id=city_id).name
+
 
 def get_path_name(path: Path) -> str:
     """
@@ -38,7 +39,8 @@ def get_cities_names() -> list[str]:
     Returns:
         list[str]: Названия всех городов.
     """
-    return [city.name for city in api.city.get_cities()]
+    return [city.name for city in crud_api.city.get_cities()]
+
 
 def get_city_id_by_name(city_name: str) -> str:
     """
@@ -49,4 +51,4 @@ def get_city_id_by_name(city_name: str) -> str:
     Returns:
         str: id города.
     """
-    return list(filter(lambda x: x.name == city_name, api.city.get_cities()))[0].id
+    return list(filter(lambda x: x.name == city_name, crud_api.city.get_cities()))[0].id

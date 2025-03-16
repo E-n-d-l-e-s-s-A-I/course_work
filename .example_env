@@ -1,4 +1,9 @@
+# CrudApi
 POSTGRES_DB="postgres"
 POSTGRES_USER="postgres"
 POSTGRES_PASSWORD="postgres"
 DATABASE__METADATA_URI="postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}"
+
+# Admin
+backend_url = "http://crud_api:8000"
+SOLVE_API_URL = "http://solve_api:8000"

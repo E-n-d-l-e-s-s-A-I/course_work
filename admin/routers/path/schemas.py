@@ -11,6 +11,6 @@ class PathWithCities(PathBase):
     city_from_id: str
     city_to_id: str
 
+
 class Path(PathWithCities):
     id: str
-

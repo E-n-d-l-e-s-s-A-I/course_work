@@ -5,6 +5,7 @@ class Settings(BaseSettings):
     """Конфиг admin."""
 
     BACKEND_URL: str
+    SOLVE_API_URL: str
 
     model_config = SettingsConfigDict(extra="ignore")
 

@@ -1,11 +1,11 @@
 import streamlit as st
-from routers.core_api import api
+from routers.core_api import crud_api
 from routers.path.schemas import PathBase, PathWithCities
 from routers.path.utils import get_cities_names, get_city_id_by_name, get_city_name, get_path_name
 from routers.utils import error_to_readable_view
 
 
-def create_city_select_box(label: str, key: str, disabled: bool, current_value = None):
+def create_city_select_box(label: str, key: str, disabled: bool, current_value=None):
     cities = get_cities_names()
     index = None
 
@@ -19,11 +19,12 @@ def create_city_select_box(label: str, key: str, disabled: bool, current_value =
         disabled=disabled,
     )
 
+
 def path_tab_page(path_tab):
     """Логика вкладки грузов."""
 
     with path_tab:
-        paths = api.path.get_paths()
+        paths = crud_api.path.get_paths()
         path_name_to_id = {get_path_name(path): path.id for path in paths}
         paths_names = list(path_name_to_id)
 
@@ -40,7 +41,7 @@ def path_tab_page(path_tab):
 
         if path_widget:
             path_id = path_name_to_id[path_widget[0]]
-            path = api.path.get_path(path_id)
+            path = crud_api.path.get_path(path_id)
 
             path_id = st.text_input("ID", value=path.id, disabled=True, key="path_id")
             path_city_from = create_city_select_box(
@@ -77,7 +78,7 @@ def path_tab_page(path_tab):
                     max_weight=path_max_weight,
                 )
                 try:
-                    api.path.update_path(path_id, path_data)
+                    crud_api.path.update_path(path_id, path_data)
                 except Exception as error:
                     st.error(f"Путь не обновлен по причине: {error_to_readable_view(error)}")
                 else:
@@ -86,7 +87,7 @@ def path_tab_page(path_tab):
             delete_clicked = col2.button("Удалить", key="path_delete_btn")
             if delete_clicked:
                 try:
-                    api.path.delete_path(path_id)
+                    crud_api.path.delete_path(path_id)
                 except Exception as error:
                     st.error(f"Путь не удален по причине: {error_to_readable_view(error)}")
                 else:
@@ -132,7 +133,7 @@ def path_tab_page(path_tab):
                     max_weight=path_max_weight,
                 )
                 try:
-                    api.path.create_path(path_data)
+                    crud_api.path.create_path(path_data)
                 except Exception as error:
                     st.error(f"Путь не создан по причине: {error_to_readable_view(error)}")
                 else:

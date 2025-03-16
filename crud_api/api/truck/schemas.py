@@ -24,7 +24,7 @@ class TruckBase(BaseModel):
     @field_validator("speed", mode="after")
     @classmethod
     def speed_validator(cls, value: float) -> float:
-        return range_validator(value, "скорости",  0, 150)
+        return range_validator(value, "скорости", 0, 150)
 
     model_config = ConfigDict(from_attributes=True)
 
