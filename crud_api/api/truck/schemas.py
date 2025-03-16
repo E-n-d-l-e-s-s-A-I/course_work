@@ -14,17 +14,17 @@ class TruckBase(BaseModel):
     @field_validator("weight", "max_cargo_weight", mode="after")
     @classmethod
     def weight_validator(cls, value: float) -> float:
-        return range_validator(value, 0, 10000)
+        return range_validator(value, "массы", 0, 10000)
 
     @field_validator("height", mode="after")
     @classmethod
     def height_validator(cls, value: float) -> float:
-        return range_validator(value, 0, 20)
+        return range_validator(value, "высоты", 0, 20)
 
     @field_validator("speed", mode="after")
     @classmethod
     def speed_validator(cls, value: float) -> float:
-        return range_validator(value, 0, 150)
+        return range_validator(value, "скорости",  0, 150)
 
     model_config = ConfigDict(from_attributes=True)
 

@@ -1,7 +1,7 @@
 from math import inf
 
 
-def range_validator(value: float, start: float = -inf, end: float = inf) -> float:
+def range_validator(value: float, entity: str, start: float = -inf, end: float = inf) -> float:
     """
     Валидатор, проверяющий что число принадлежит диапазоны [start, end].
 
@@ -18,5 +18,5 @@ def range_validator(value: float, start: float = -inf, end: float = inf) -> floa
     """
 
     if value < start or value > end:
-        raise ValueError(f"Значение должно принадлежать диапазону [{start}, {end}]")
+        raise ValueError(f"Значение {entity} должно принадлежать диапазону [{start}, {end}]")
     return value

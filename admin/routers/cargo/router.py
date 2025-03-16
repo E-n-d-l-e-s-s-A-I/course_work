@@ -1,6 +1,7 @@
 import streamlit as st
 from routers.cargo.schemas import CargoBase
 from routers.core_api import api
+from routers.utils import error_to_readable_view
 
 
 def cargo_tab_page(cargo_tab):
@@ -39,7 +40,7 @@ def cargo_tab_page(cargo_tab):
                 try:
                     api.cargo.update_cargo(cargo_id, cargo_data)
                 except Exception as error:
-                    st.error(f"Груз не обновлен по причине: {error}")
+                    st.error(f"Груз не обновлен по причине: {error_to_readable_view(error)}")
                 else:
                     st.success("Груз обновлен")
 
@@ -48,7 +49,7 @@ def cargo_tab_page(cargo_tab):
                 try:
                     api.cargo.delete_cargo(cargo_id)
                 except Exception as error:
-                    st.error(f"Груз не удален по причине: {error}")
+                    st.error(f"Груз не удален по причине: {error_to_readable_view(error)}")
                 else:
                     st.success("Груз удален")
 
@@ -65,6 +66,6 @@ def cargo_tab_page(cargo_tab):
                 try:
                     api.cargo.create_cargo(cargo_data)
                 except Exception as error:
-                    st.error(f"Груз не создан по причине: {error}")
+                    st.error(f"Груз не создан по причине: {error_to_readable_view(error)}")
                 else:
                     st.success("Груз создан")

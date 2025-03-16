@@ -113,18 +113,14 @@ class DuplicateNameException(HTTPException):
     удалить объект с существующими связанными объектами.
     """
 
-    EXCEPTION_MESSAGE_TEMPLATE = (
-        "Сущность '{entity_name}' с таким названием уже существует"
-    )
+    EXCEPTION_MESSAGE_TEMPLATE = "Сущность '{entity_name}' с таким названием уже существует"
 
     def __init__(
         self,
         detail: Any = None,
         headers: dict[str, str] | None = None,
     ) -> None:
-        import logging
-        logging.warn(detail)
-        entity_name = extract_entity_name(detail, r'([a-zA-Z_]*)_name_key')
+        entity_name = extract_entity_name(detail, r"([a-zA-Z_]*)_name_key")
 
         detail = DuplicateNameException.EXCEPTION_MESSAGE_TEMPLATE.format(
             entity_name=entity_name,

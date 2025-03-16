@@ -11,7 +11,7 @@ class CargoBase(BaseModel):
     @field_validator("weight", mode="after")
     @classmethod
     def weight_validator(cls, value: float) -> float:
-        return range_validator(value, 0, 10000)
+        return range_validator(value, "массы", 0, 10000)
 
     model_config = ConfigDict(from_attributes=True)
 

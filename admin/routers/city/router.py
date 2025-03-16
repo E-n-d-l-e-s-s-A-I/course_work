@@ -1,6 +1,7 @@
 import streamlit as st
 from routers.city.schemas import CityBase
 from routers.core_api import api
+from routers.utils import error_to_readable_view
 
 
 def city_tab_page(city_tab):
@@ -32,7 +33,7 @@ def city_tab_page(city_tab):
                 try:
                     api.city.update_city(city_id, city_data)
                 except Exception as error:
-                    st.error(f"Город не обновлен по причине: {error}")
+                    st.error(f"Город не обновлен по причине: {error_to_readable_view(error)}")
                 else:
                     st.success("Город обновлен")
 
@@ -41,7 +42,7 @@ def city_tab_page(city_tab):
                 try:
                     api.city.delete_city(city_id)
                 except Exception as error:
-                    st.error(f"Город не удален по причине: {error}")
+                    st.error(f"Город не удален по причине: {error_to_readable_view(error)}")
                 else:
                     st.success("Город удален")
 
@@ -54,6 +55,6 @@ def city_tab_page(city_tab):
                 try:
                     api.city.create_city(city_data)
                 except Exception as error:
-                    st.error(f"Город не создан по причине: {error}")
+                    st.error(f"Город не создан по причине: {error_to_readable_view(error)}")
                 else:
                     st.success("Город создан")

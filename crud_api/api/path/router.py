@@ -44,7 +44,7 @@ async def get_path(
 @router.post("")
 async def create_path(
     session: Annotated[AsyncSession, Depends(get_db_session)],
-    path: schemas.PathBase,
+    path: schemas.PathWithCities,
 ) -> schemas.PathWithId:
     """
     Эндпойнт для создания пути.

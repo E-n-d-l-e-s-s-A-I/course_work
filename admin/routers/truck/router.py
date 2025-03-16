@@ -1,6 +1,7 @@
 import streamlit as st
 from routers.core_api import api
 from routers.truck.schemas import TruckBase
+from routers.utils import error_to_readable_view
 
 
 def truck_tab_page(truck_tab):
@@ -49,7 +50,7 @@ def truck_tab_page(truck_tab):
                 try:
                     api.truck.update_truck(truck_id, truck_data)
                 except Exception as error:
-                    st.error(f"Грузовик не обновлен по причине: {error}")
+                    st.error(f"Грузовик не обновлен по причине: {error_to_readable_view(error)}")
                 else:
                     st.success("Грузовик обновлен")
 
@@ -58,7 +59,7 @@ def truck_tab_page(truck_tab):
                 try:
                     api.truck.delete_truck(truck_id)
                 except Exception as error:
-                    st.error(f"Грузовик не удален по причине: {error}")
+                    st.error(f"Грузовик не удален по причине: {error_to_readable_view(error)}")
                 else:
                     st.success("Грузовик удален")
 
@@ -84,6 +85,6 @@ def truck_tab_page(truck_tab):
                 try:
                     api.truck.create_truck(truck_data)
                 except Exception as error:
-                    st.error(f"Грузовик не создан по причине: {error}")
+                    st.error(f"Грузовик не создан по причине: {error_to_readable_view(error)}")
                 else:
                     st.success("Грузовик создан")

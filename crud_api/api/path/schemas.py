@@ -6,8 +6,6 @@ from utils.validators import range_validator
 
 
 class PathBase(BaseModel):
-    city_from_id: UUID
-    city_to_id: UUID
     distance: float
     max_height: float
     max_weight: float
@@ -15,17 +13,24 @@ class PathBase(BaseModel):
     @field_validator("max_weight", mode="after")
     @classmethod
     def weight_validator(cls, value: float) -> float:
-        return range_validator(value, 0, 20000)
+        return range_validator(value, "массы", 0, 20000)
 
     @field_validator("max_height", mode="after")
     @classmethod
     def height_validator(cls, value: float) -> float:
-        return range_validator(value, 0, 20)
+        return range_validator(value, "высоты", 0, 20)
 
     @field_validator("distance", mode="after")
     @classmethod
     def distance_validator(cls, value: float) -> float:
-        return range_validator(value, 0)
+        return range_validator(value, "расстояния", 0)
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class PathWithCities(PathBase):
+    city_from_id: UUID
+    city_to_id: UUID
 
     @model_validator(mode="after")
     def check_path(self) -> Self:
@@ -33,8 +38,6 @@ class PathBase(BaseModel):
             raise ValueError("Город отправления не может совпадать с городом прибытия")
         return self
 
-    model_config = ConfigDict(from_attributes=True)
 
-
-class PathWithId(PathBase):
+class PathWithId(PathWithCities):
     id: UUID

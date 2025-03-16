@@ -51,14 +51,14 @@ class PathService(Service):
 
     async def create_object(
         self,
-        path: schemas.PathBase,
+        path: schemas.PathWithCities,
         session: AsyncSession,
     ) -> schemas.PathWithId:
         """
         Логика http-метода post для создания пути.
 
         Args:
-            path (schemas.PathBase): Pydantic схема пути.
+            path (schemas.PathWithCities): Pydantic схема пути.
             session (AsyncSession): Асинхронная Sqlalchemy сессия.
 
         Raises:
@@ -96,8 +96,6 @@ class PathService(Service):
         Returns:
             schemas.PathWithId: Путь.
         """
-        await self.check_path_not_exist(path, session)
-
         path_sqlalchemy_object = await ops.update(
             Path,
             path_id,
