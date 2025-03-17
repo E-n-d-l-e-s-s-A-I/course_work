@@ -47,3 +47,9 @@ class Path(BaseModel):
     max_weight: float
     city_from_id: str
     city_to_id: str
+
+
+class TaskOutput(BaseModel):
+    paths: list[Path]
+    truck: Truck
+    time: float

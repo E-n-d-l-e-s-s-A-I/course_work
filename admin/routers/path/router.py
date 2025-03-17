@@ -21,7 +21,7 @@ def create_city_select_box(label: str, key: str, disabled: bool, current_value=N
 
 
 def path_tab_page(path_tab):
-    """Логика вкладки грузов."""
+    """Логика вкладки путей."""
 
     with path_tab:
         paths = crud_api.path.get_paths()

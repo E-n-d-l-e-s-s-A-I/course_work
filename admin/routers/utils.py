@@ -13,8 +13,8 @@ def error_to_readable_view(error: Exception) -> str:
     """
     error_msg = str(error)
     templates = [
-        r'"msg":"Value error, ([a-zA-Zа-яА-Я_\[\]0-9,\' ]*)"',
-        r'{"detail":"([a-zA-Zа-яА-Я_\[\]0-9,\' ]*)"}',
+        r'"msg":"Value error, ([a-zA-Zа-яА-Я_\[\]0-9,\'. ]*)"',
+        r'{"detail":"([a-zA-Zа-яА-Я_\[\]0-9,\'. ]*)"}',
     ]
     for template in templates:
         search_res = re.search(template, error_msg)
