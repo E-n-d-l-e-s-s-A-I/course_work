@@ -13,6 +13,11 @@ case $COMMAND in
         cd admin
         uv run streamlit run main.py --client.showErrorDetails=false
        ;;
+    solve_api)
+        echo "Запускается сервис solve_api..."
+        cd solve_api
+        uv run uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+        ;;
     *)
         echo "Ошибка: Неверный параметр '$COMMAND'. Используйте 'crud_api' или 'solve_api' или 'admin'"
         exit 1

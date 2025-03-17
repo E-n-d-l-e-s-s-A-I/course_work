@@ -35,3 +35,15 @@ services:
       - crud_api
 
     command: admin
+  
+  solve_api:
+    build:
+      context: .
+    ports:
+      - "8002:8000"
+    volumes:
+      - ./solve_api:/src/solve_api
+    depends_on:
+      - db
+      - crud_api
+    command: solve_api
