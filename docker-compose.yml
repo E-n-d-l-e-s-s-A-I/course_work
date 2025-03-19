@@ -12,8 +12,7 @@ services:
       retries: 10
 
   crud_api:
-    build:
-      context: .
+    image: course_work
     ports:
       - "8000:8000"
     volumes:
@@ -24,8 +23,7 @@ services:
     command: crud_api
 
   admin:
-    build:
-      context: .
+    image: course_work
     ports:
       - "8001:8501"
     volumes:
@@ -37,8 +35,7 @@ services:
     command: admin
   
   solve_api:
-    build:
-      context: .
+    image: course_work
     ports:
       - "8002:8000"
     volumes:
